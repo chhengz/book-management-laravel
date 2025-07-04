@@ -12,6 +12,10 @@
 
 <body>
 
+     {{-- Button back to book show --}}
+    <div class="container my-5">
+        <a href="{{ route('book.show') }}" class="btn btn-secondary">← Back to Book List</a>
+    </div>
 
     <div class="container">
         @yield('content')
