@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
 
+    // view
+    public function create()
+    {
+        return view('book.create');
+    }
+
     // display book
     public function show()
     {
@@ -94,8 +100,40 @@ class BookController extends Controller
         $book->cover = $filename;
 
 
-        $book->save();
+        $book->update();
         return redirect()->route('book.show')->with('success', 'Book updated successfully');
 
     }
+
+    // delete book
+    public function delete($id)
+    {
+        $book = Book::where('id', $id)->first();
+        if (file_exists(public_path('uploads/' . $book->cover)) and !empty($book->cover)) {
+            unlink(public_path('uploads/' . $book->cover));
+        }
+        $book->delete();
+        return redirect()->route('book.show')->with('success', 'Book deleted successfully');
+    }
+
+    // public function delete()
+    // {
+
+    // }
+
+
+
+
+    // delete all book
+    // public function destroyAll()
+    // {
+    //     $books = Book::all();
+    //     foreach ($books as $book) {
+    //         if (file_exists(public_path('uploads/' . $book->cover)) and !empty($book->cover)) {
+    //             unlink(public_path('uploads/' . $book->cover));
+    //         }
+    //     }
+    //     Book::truncate();
+    //     return redirect()->route('book.show')->with('success', 'All books deleted successfully');
+    // }
 }
