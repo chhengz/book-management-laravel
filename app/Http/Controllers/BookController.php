@@ -40,6 +40,14 @@ class BookController extends Controller
         $book->title = $request->title;
         // $book->slug = $request->slug;
         $book->slug = strtolower(str_replace(' ', '-', $request->slug));
+
+        // check if slug already exists (add random string to slug)
+        $slugExists = Book::where('slug', $book->slug)->exists();
+        if ($slugExists) {
+            $randomString = substr(md5(uniqid(rand(), true)), 0, 5);
+            $book->slug = $book->slug . '-' . $randomString;
+        }
+
         $book->description = $request->description;
 
         $extension = $request->file('cover')->extension();

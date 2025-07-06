@@ -25,9 +25,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // create a new book
-Route::get('/book/create', function () {
-    return view('book.create');
-})->name('book.create');
+// Route::get('/book/create', function () {
+//     return view('book.create');
+// })->name('book.create');
 
 // Auth Routes
 Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');

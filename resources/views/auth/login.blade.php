@@ -3,36 +3,39 @@
 @section('title', 'Login')
 
 @section('content')
+<div class="max-w-md mx-auto mt-12">
+    <h1 class="text-3xl font-bold text-center mb-8">Login</h1>
 
-<div class="container my-5">
-    <h1 class="text-center">Login</h1>
-    <form action="{{ route('auth.loginPost') }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
-        @csrf
-
-        <div class="mb-3 col-md-6">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+    @if(session('message'))
+        <div class="mb-6 p-4 bg-yellow-50 text-yellow-800 rounded-lg flex justify-between items-center">
+            <span>{{ session('message') }}</span>
+            <button type="button" class="text-yellow-800 hover:text-yellow-900" onclick="this.parentElement.remove()">✕</button>
         </div>
-        <div class="mb-3 col-md-6">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+    @endif
+
+    <form action="{{ route('auth.loginPost') }}" method="POST" class="space-y-6">
+        @csrf
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email" required class="form-input mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-900 placeholder-gray-400 focus:border-black">
+        </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" id="password" name="password" required class="form-input mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-900 placeholder-gray-400 focus:border-black">
         </div>
         @if ($errors->any())
-        <div class="alert alert-danger col-md-6">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="p-4 bg-red-50 text-red-800 rounded-lg">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
-        <button type="submit" class="btn btn-primary">Login</button>
-
-        <div class="mt-3">
-            <p>Don't have an account? <a href="{{ route('auth.register') }}">Register</a></p>
-        </div>
-
+        <button type="submit" class="btn w-full py-2 px-4 bg-black text-white rounded-md hover:bg-gray-800">Login</button>
+        <p class="text-center text-sm text-gray-600 mt-4">
+            Don't have an account? <a href="{{ route('auth.register') }}" class="text-black hover:underline">Register</a>
+        </p>
     </form>
 </div>
-
 @endsection

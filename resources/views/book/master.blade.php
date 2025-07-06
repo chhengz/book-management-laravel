@@ -1,51 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #4B5563;
+        }
+        .btn-primary {
+            background-color: #1F2937;
+            color: #FFFFFF;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #374151;
+        }
+        .btn-danger {
+            background-color: #EF4444;
+            color: #FFFFFF;
+            transition: background-color 0.3s ease;
+        }
+        .btn-danger:hover {
+            background-color: #DC2626;
+        }
+    </style>
 </head>
-
-<body>
-
-    <nav class="navbar bg-body-tertiary">
-    <div class="container">
-        <a class="navbar-brand bold">Library</a>
-        <div>
-            <ul class="nav nav-pills">
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.register') }}">Register</a>
-                    </li>
-                @endguest
-
-                @auth
-                    <li class="nav-item me-2">
-                        <span class="nav-link disabled">👤 {{ Auth::user()->name }}</span>
-                    </li>
-                    <li>
-                        <a class="btn btn-danger" href="{{ route('auth.logout') }}">Logout</a>
-                    </li>
-                @endauth
-            </ul>
+<body class="bg-gray-100 text-gray-900">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-2xl font-bold text-gray-900">Library</a>
+                <div class="flex items-center space-x-4">
+                    @guest
+                        <a href="{{ route('auth.login') }}" class="nav-link text-gray-600 hover:text-gray-900">Login</a>
+                        <a href="{{ route('auth.register') }}" class="nav-link text-gray-600 hover:text-gray-900">Register</a>
+                    @endguest
+                    @auth
+                        <span class="text-gray-600">{{ Auth::user()->name }}</span>
+                        <a href="{{ route('auth.logout') }}" class="btn-danger px-4 py-2 rounded-md text-sm font-medium">Logout</a>
+                    @endauth
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-    <div class="container  my-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
         @yield('content')
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
 </body>
-
 </html>
