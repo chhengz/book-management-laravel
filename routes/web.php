@@ -4,16 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
-
 // Public routes
 Route::get('/', fn () => view('welcome'));
 
 // Book viewing (public)
 Route::get('/book/show', [BookController::class, 'show'])->name('book.show');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
-});
+Route::get('/book/view/{id}', [BookController::class, 'book_detail'])->name('book.view');
 
 // Routes that require login
 Route::middleware('auth')->group(function () {
@@ -23,7 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/book/update/{id}', [BookController::class, 'update'])->name('book.update');
     Route::get('/book/delete/{id}', [BookController::class, 'delete'])->name('book.delete');
 });
-
 
 // Auth Routes
 Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');

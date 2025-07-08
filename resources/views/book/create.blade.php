@@ -23,22 +23,22 @@
 
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm" id="title" name="title" value="{{ old('title') }}" required>
+                <input type="text" class="p-2 mt-1 block w-full bg-gray-200 border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm" id="title" name="title" value="{{ old('title') }}" required>
             </div>
 
             <div class="mb-4">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm" id="slug" name="slug" value="{{ old('slug') }}" required>
+                <input type="text" class="p-2 mt-1 block w-full bg-gray-200 border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm" id="slug" name="slug" value="{{ old('slug') }}" required>
             </div>
 
             <div class="mb-4">
                 <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                <textarea name="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm" required>{{ old('description') }}</textarea>
+                <textarea name="description" class="p-2 mt-1 block bg-gray-200 w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm" required>{{ old('description') }}</textarea>
             </div>
 
             <div class="mb-4">
                 <label for="cover" class="block text-sm font-medium text-gray-700">Cover Image</label>
-                <input type="file" name="cover" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" id="cover">
+                <input type="file" name="cover" class="p-2 mt-1 block w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" id="cover">
             </div>
 
             <div>

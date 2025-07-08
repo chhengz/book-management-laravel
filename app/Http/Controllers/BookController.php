@@ -14,6 +14,16 @@ class BookController extends Controller
         return view('book.create');
     }
 
+    public function book_detail($id)
+    {
+        // $book = Book::find($id);
+        $book = Book::where('id', $id)->first();
+        if (!$book) {
+            return redirect()->route('book.show')->with('error', 'Book not found');
+        }
+        return view('book.view', compact('book'));
+    }
+
     // display book
     public function show()
     {
