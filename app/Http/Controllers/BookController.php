@@ -104,6 +104,9 @@ class BookController extends Controller
             $filename = date('YmdHis') . '.' . $extension;
             $request->file('cover')->move(public_path('uploads'), $filename);
         }
+        else {
+            $filename = $book->cover; // keep the old cover if no new file is uploaded
+        }
 
         // if ($request->hasFile('cover')) {
         //     $extension = $request->file('cover')->extension();
